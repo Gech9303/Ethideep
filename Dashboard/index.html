@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EthioShield · Hackathon Qiyas Project 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="app-header">
+    <div class="header-inner">
+        <a href="#" class="brand" onclick="showSection('home')">
+            <span class="brand-mark">🛡️</span>
+            <div class="brand-text">
+                <span class="brand-name">EthioShield</span>
+                <span class="brand-tagline">Hackathon Qiyas Project 2026</span>
+            </div>
+        </a>
+
+        <nav class="main-nav">
+            <button class="nav-link active" data-section="home">Home</button>
+            <button class="nav-link" data-section="contact">Contact</button>
+            <button class="nav-link" data-section="faq">FAQ</button>
+            <button class="nav-link" data-section="telegram">Telegram Bot</button>
+            <button class="nav-link" data-section="fastapi">FastAPI</button>
+        </nav>
+
+        <div class="header-actions">
+            <div class="dropdown-wrapper">
+                <button class="icon-btn" id="settingsBtn">⚙️</button>
+                <div class="dropdown-panel" id="settingsDropdown">
+                    <h4>Settings</h4>
+                    <div class="setting-item">
+                        <span>🌐 Language</span>
+                        <select id="languageSelect">
+                            <option value="en">English</option>
+                            <option value="am">አማርኛ</option>
+                            <option value="om">Afaan Oromoo</option>
+                            <option value="ti">ትግርኛ</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <span>🔔 Notifications</span>
+                        <span class="on">ON</span>
+                    </div>
+                    <div class="setting-item last">
+                        <span style="font-size:0.72rem;color:#64748b;">Hackathon Qiyas 2026</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dropdown-wrapper">
+                <button class="profile-btn" id="profileBtn">
+                    <span class="avatar">AB</span>
+                    <span>Abebe</span>
+                </button>
+                <div class="dropdown-panel" id="profileDropdown">
+                    <div class="profile-detail">
+                        <div class="big-avatar">AB</div>
+                        <div>
+                            <p style="font-weight:700;">Abebe Bikila</p>
+                            <span style="font-size:0.75rem;color:#64748b;">abebe@ethioshield.et</span>
+                        </div>
+                    </div>
+                    <div class="setting-item" style="cursor:pointer;">👤 View Profile</div>
+                    <div class="setting-item last" style="cursor:pointer;color:#dc2626;">🚪 Logout</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="app-main">
+
+    <!-- HOME -->
+    <section id="home" class="section active">
+        <div class="hero">
+            <span class="hero-badge"><span class="dot"></span> Hackathon Qiyas Project 2026</span>
+            <h1>🛡️ EthioShield</h1>
+            <p>Digital Financial Cyber-Defense · OCR & Threat Detection</p>
+        </div>
+
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>🔍 Scanner Module</h2>
+                    <span class="hint">Ctrl + Enter for quick scan</span>
+                </div>
+                <div class="form-group">
+                    <label>Paste text or upload screenshot</label>
+                    <textarea id="message_text" placeholder="Paste the suspicious bank message or link here..."></textarea>
+                </div>
+                <div class="file-input-wrapper">
+                    <input type="file" id="fileInput" accept="image/*">
+                    <label for="fileInput" class="file-label">📎 Upload Photo (OCR)</label>
+                    <span class="file-name" id="fileName"></span>
+                </div>
+                <div class="btn-group">
+                    <button id="checkBtn" class="btn btn-check">🔍 Analyze Message</button>
+                    <button id="reportBtn" class="btn btn-report">🚨 Block / Report</button>
+                </div>
+                <div id="resultContainer"></div>
+                <div id="reportMessageContainer"></div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="info-card">
+                    <h3>💡 Security Tips</h3>
+                    <ul class="info-list">
+                        <li><span class="bullet">•</span> Never share your password</li>
+                        <li><span class="bullet">•</span> Do not open suspicious links</li>
+                        <li><span class="bullet">•</span> Verify bank messages with EthioShield</li>
+                        <li><span class="bullet">•</span> Be careful with urgent calls</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>📊 System Status</h3>
+                    <div class="stat-row"><span>Messages Scanned</span><span class="value" id="statScanned">0</span></div>
+                    <div class="stat-row"><span>Attacks Blocked</span><span class="value bad" id="statBlocked">0</span></div>
+                    <div class="stat-row"><span>Defense Level</span><span class="value good">96%</span></div>
+                    <div class="stat-row"><span>Threat Level</span><span class="value warn">Medium</span></div>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+        <div class="page-header">
+            <h1>📬 Contact Us</h1>
+            <p>Get in touch with the EthioShield team</p>
+        </div>
+        <div class="contact-grid">
+            <div class="card">
+                <h3>Send a Message</h3>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="contactName" placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="contactEmail" placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="contactMessage" rows="5" placeholder="How can we help you?"></textarea>
+                </div>
+                <button class="btn btn-check" style="width:100%;" onclick="sendContact()">Send Message</button>
+                <div id="contactResult" style="margin-top:1rem;"></div>
+            </div>
+            <div class="info-card">
+                <h3>📍 Our Info</h3>
+                <p style="margin-bottom:1rem;color:#64748b;">Hackathon Qiyas Project 2026 Team</p>
+                <div class="stat-row"><span>Email</span><span>support@ethioshield.et</span></div>
+                <div class="stat-row"><span>Telegram</span><span>@EthioShieldBot</span></div>
+                <div class="stat-row"><span>Location</span><span>Addis Ababa, Ethiopia</span></div>
+                <div class="stat-row"><span>Project</span><span>Qiyas Hackathon 2026</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+        <div class="page-header">
+            <h1>❓ Frequently Asked Questions</h1>
+            <p>Everything you need to know about EthioShield</p>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question">What is EthioShield?</button>
+                <div class="faq-answer">
+                    EthioShield is an AI-powered cyber-defense platform built for Ethiopian digital finance. 
+                    It detects phishing, fake bank messages, and social engineering attacks in Amharic, English, Afaan Oromoo and Tigrinya.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How does the scanner work?</button>
+                <div class="faq-answer">
+                    You can paste a suspicious message or upload a screenshot. Our system uses OCR + keyword & AI analysis 
+                    to detect threats and give you an instant risk level.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Is there a Telegram Bot?</button>
+                <div class="faq-answer">
+                    Yes! You can use our official Telegram Bot <strong>@EthioShieldBot</strong> to check messages 
+                    directly inside Telegram without opening the website.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Is my data safe?</button>
+                <div class="faq-answer">
+                    Yes. We do not store personal banking credentials. All analysis is done securely and 
+                    only threat reports are logged for improving the system.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Who built this project?</button>
+                <div class="faq-answer">
+                    This project was developed for <strong>Hackathon Qiyas Project 2026</strong> by the EthioShield team.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TELEGRAM BOT -->
+    <section id="telegram" class="section">
+        <div class="page-header">
+            <h1>🤖 Telegram Bot</h1>
+            <p>Check suspicious messages directly inside Telegram</p>
+        </div>
+        <div class="content-grid">
+            <div class="card">
+                <h3>How to use the Bot</h3>
+                <ol style="padding-left:1.2rem; color:#475569; line-height:1.8;">
+                    <li>Open Telegram and search for <strong>@EthioShieldBot</strong></li>
+                    <li>Start the bot with <code>/start</code></li>
+                    <li>Send any suspicious text or photo</li>
+                    <li>Get instant analysis result</li>
+                    <li>Use <code>/report</code> to report dangerous links</li>
+                </ol>
+                <a href="https://t.me/EthioShieldBot" target="_blank" class="btn btn-check" style="margin-top:1.5rem; text-decoration:none;">
+                    Open Telegram Bot →
+                </a>
+            </div>
+            <div class="info-card">
+                <h3>Bot Commands</h3>
+                <div class="stat-row"><span>/start</span><span>Start the bot</span></div>
+                <div class="stat-row"><span>/check</span><span>Analyze a message</span></div>
+                <div class="stat-row"><span>/report</span><span>Report a threat</span></div>
+                <div class="stat-row"><span>/help</span><span>Show help</span></div>
+                <div class="stat-row"><span>/stats</span><span>Show system stats</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FASTAPI -->
+    <section id="fastapi" class="section">
+        <div class="page-header">
+            <h1>⚡ FastAPI Backend</h1>
+            <p>Public API endpoints for developers</p>
+        </div>
+        <div class="card">
+            <h3>Base URL</h3>
+            <code style="background:#f0fdf4;padding:0.5rem 1rem;border-radius:8px;display:inline-block;margin:0.5rem 0;">
+                https://ethioshield.onrender.com/
+            </code>
+
+            <h3 style="margin-top:1.5rem;">Available Endpoints</h3>
+            <div class="api-table">
+                <div class="api-row">
+                    <span class="method post">POST</span>
+                    <code>/analyze</code>
+                    <span>Analyze text for threats</span>
+                </div>
+                <div class="api-row">
+                    <span class="method post">POST</span>
+                    <code>/report</code>
+                    <span>Report a dangerous message</span>
+                </div>
+                <div class="api-row">
+                    <span class="method get">GET</span>
+                    <code>/stats</code>
+                    <span>Get system statistics</span>
+                </div>
+                <div class="api-row">
+                    <span class="method get">GET</span>
+                    <code>/docs</code>
+                    <span>Interactive API documentation (Swagger)</span>
+                </div>
+            </div>
+
+            <h3 style="margin-top:1.5rem;">Example Request</h3>
+            <pre class="code-block">{
+  "text": "Your bank account is locked. Click here to verify password"
+}</pre>
+
+            <a href="https://ethioshield.onrender.com/docs" target="_blank" class="btn btn-check" style="margin-top:1.5rem; text-decoration:none;">
+                Open FastAPI Docs →
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<footer class="app-footer">
+    <div class="footer-inner">
+        <div>
+            <strong>🛡️ EthioShield</strong>
+            <div style="font-size:0.78rem;opacity:0.85;margin-top:0.2rem;">
+                © 2026 Hackathon Qiyas Project · All rights reserved
+            </div>
+        </div>
+        <div class="footer-links">
+            <a href="#" onclick="showSection('home')">Home</a>
+            <a href="#" onclick="showSection('contact')">Contact</a>
+            <a href="#" onclick="showSection('faq')">FAQ</a>
+            <a href="#" onclick="showSection('telegram')">Telegram</a>
+            <a href="#" onclick="showSection('fastapi')">API</a>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
